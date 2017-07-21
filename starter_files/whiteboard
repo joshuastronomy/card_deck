@@ -1,0 +1,39 @@
+Card
+  Responsibilities
+    - Has a rank and suit.
+    - Has a point value. Aces' point values depend on the rest of the Hand.
+  Collaborators
+    - Collected into a Deck.
+    - Collected into a Hand for each Player and a Hand for the Dealer.
+
+Deck
+  Responsibilities
+    -Has 52 cards, 1 for each suit and face combination.
+    -Must be randomized prior to drawing and replenished after a number of games.
+  Collaborators
+    -Cards drawn from the deck are placed into a Hand.  The same card is not available to draw.
+    -The same deck is available to Players and Dealers.
+
+Hand
+  Responsibilities
+    -Has a total value upon which to score.
+    -It's here that the value of Ace can change based on hand value.
+  Collaborators
+    -Cards go here from the Deck.
+    -One for the Player, one for the Dealer.
+
+Player
+  Responsibilities
+    -Action based on user input, little to no logic required.
+    -Need to hold a hand, operate on the Deck by drawing.
+  Collaborators
+    -Has a hand, draws Cards from a Deck.
+    -
+
+Dealer
+  Responsibilities
+    -
+    -
+  Collaborators
+    -
+    -
