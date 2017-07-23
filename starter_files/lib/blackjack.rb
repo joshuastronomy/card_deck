@@ -55,12 +55,9 @@ class Game
   end
 
   def hit_or_stand
-
     puts "Hit or stand?"
-
     choice = gets
-
-    if choice.chomp == "hit"
+    if choice.chomp.downcase == "hit" || choice.chomp == "h"
       hit
     elsif choice.chomp == "stand"
       hand_over
@@ -68,6 +65,14 @@ class Game
     puts "I didn't understand you.  What was that again?"
     hit_or_stand
     end
+  end
+
+  def hit
+    @player_hand << @card_deck.draw
+    # puts @player_hand
+    puts "Your current hand: #{hand_display(@player_hand)} with a value of #{hand_value(@player_hand)}."
+    limit_check
+    hit_or_stand
   end
 
   def limit_check
@@ -78,23 +83,14 @@ class Game
   end
 
   def hand_display(hand)
-    @p_hand = hand.collect(&:to_s).join(', ')
+    hand.collect(&:to_s).join(', ')
   end
 
   def hand_value(hand)
-
     val = hand.reduce(0) do |acc, obj|
       acc = acc + obj.value
     end
     val
-  end
-
-  def hit
-    @player_hand << @card_deck.draw
-    # puts @player_hand
-    puts "Your current hand: #{hand_display(@player_hand)} with a value of #{hand_value(@player_hand)}."
-    limit_check
-    hit_or_stand
   end
 
   def hand_over
@@ -119,7 +115,7 @@ class Game
   end
 
   def lose
-    puts "Your final hand of #{hand_display(@player_hand)} wins with a value of #{hand_value(@player_hand)} over the dealer's hand of #{hand_display(@dealer_hand)} with a value of #{hand_value(@dealer_hand)}."
+    puts "Your final hand of #{hand_display(@player_hand)} loses with a value of #{hand_value(@player_hand)} beaten by the dealer's hand of #{hand_display(@dealer_hand)} with a value of #{hand_value(@dealer_hand)}."
 
     puts "You lose!  You lost your bet."
 
